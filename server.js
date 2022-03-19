@@ -12,12 +12,15 @@ const app = express();
 
 
 app.use(express.json());
+
+// setting up the public folder as static
 app.use(express.static({extended: true}));
 
+// get route for the homepage 
 app.get ('/', (req, res) => {
     res.sendFile(path.join(_dirname, '/public/index.html'))
 });
-
+// get routes for the notes page
 app.get ('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
