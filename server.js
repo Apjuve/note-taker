@@ -1,7 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const path = require('path');
-const { readAndAppend } = require('./helpers/util.js');
+const { readAndAppend, deleteNote } = require('./helpers/util.js');
 const api = require('./routes/index.js');
 const database = './db/db.json';
 
@@ -45,6 +45,7 @@ app.post ('/api/notes', (req, res) => {
             id: uuidv4(),
         };
 
+        // adds new note to the database in db.json
         readAndAppend(newNote, './db/db.json');
        
         const response = {
@@ -56,3 +57,18 @@ app.post ('/api/notes', (req, res) => {
         res.json('error creating note')
     }
 });
+
+// delete function that will remove note from the left side
+app.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id;
+    deleteNote(database, id);
+    res.json({ id:id});
+});
+
+app.get('*', (req, res) => 
+res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT} 🚀`)
+);
