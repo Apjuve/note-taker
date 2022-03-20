@@ -1,8 +1,10 @@
 const express = require('express');
 const res = require('express/lib/response');
 const path = require('path');
-const { readAndAppend, deleteNote } = require('./helpers/util.js');
-const api = require('./routes/index.js');
+const { v4: uuidv4 } = require('uuid');
+const { readAndAppend, readFromFile, deleteNote} = require('./helpers/util.js');
+// const { readAndAppend, deleteNote } = require('./helpers/util.js');
+// const api = require('./routes/index.js');
 const database = './db/db.json';
 
 const PORT = process.env.PORT || 3001;
@@ -10,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // setting up the public folder as static
-app.use(express.static({public}));
+app.use(express.static('public'));
 
 // middleware for parsing JSON and urlencoded data.
 app.use(express.json());
@@ -26,7 +28,7 @@ app.get ('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
 
-app.get('/api/notes', (req, res) => {
+app.get('./api/notes', (req, res) => {
     readFile('/db/db.json').then((data) => res.json(JSON.parse(data)))
 });
 

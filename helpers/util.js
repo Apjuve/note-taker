@@ -2,15 +2,15 @@ const fs = require('fs');
 const util = require('util');
 
 // promise version of fs.readFile
-const readFromFile = util.promisify(fs.readFile);
+const readFile = util.promisify(fs.readFile);
 
 const writeToFile = (destination, content) => 
 fs.writeFile(destination, JSON.stringify(content, null, 4), (err) => 
-err ? console.error(err) : Console.info (`\nData wriitten to ${destination}`)
+err ? console.error(err) : console.info (`\nData wriitten to ${destination}`)
 );
 
 const readAndAppend = (content, file) => {
-    fs.readFromFile(file, 'utf8', (err,data) => {
+    fs.readFile(file, 'utf8', (err,data) => {
         if(err) {
             console.error(err);
         }else {
@@ -20,7 +20,7 @@ const readAndAppend = (content, file) => {
         }
     });
 };
-
+// delete function that will remove note after creating it.
 const deleteNote = (file, passedId) => {
     fs.readFile(file, 'utf8', (err, data) => {
         if(err) {
@@ -39,4 +39,4 @@ const deleteNote = (file, passedId) => {
     })
 }
 
-module.exports = { readFromFile, writeToFile, readAndAppend, deleteNote }
+module.exports = { readFile, writeToFile, readAndAppend, deleteNote }
