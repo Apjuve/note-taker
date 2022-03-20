@@ -1,4 +1,3 @@
-const { Console } = require('console');
 const fs = require('fs');
 const util = require('util');
 
@@ -11,7 +10,7 @@ err ? console.error(err) : Console.info (`\nData wriitten to ${destination}`)
 );
 
 const readAndAppend = (content, file) => {
-    fs.readFile(file, 'utf8', (err,data) => {
+    fs.readFromFile(file, 'utf8', (err,data) => {
         if(err) {
             console.error(err);
         }else {
@@ -21,3 +20,23 @@ const readAndAppend = (content, file) => {
         }
     });
 };
+
+const deleteNote = (file, passedId) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+        if(err) {
+            console.error(err);
+        }else {
+            const doneNotes = JSON.parse(data);
+            let newNotes = doneNotes.filter(({ id }) => id !== passedId);
+            fs.writeFile(file, JSON.stringify(newNotes), (err) => {
+                if(err) {
+                    console.error(err);
+                }else {
+                    console.log('Note deleted');
+                }
+            })
+        }
+    })
+}
+
+module.exports = { readFromFile, writeToFile, readAndAppend, deleteNote }
