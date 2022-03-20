@@ -1,6 +1,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const path = require('path');
+const { readAndAppend } = require('./helpers/util.js');
 const api = require('./routes/index.js');
 const database = './db/db.json';
 
@@ -43,5 +44,15 @@ app.post ('/api/notes', (req, res) => {
             text,
             id: uuidv4(),
         };
+
+        readAndAppend(newNote, './db/db.json');
+       
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+        res.json(response);
+    }else {
+        res.json('error creating note')
     }
-})
+});
