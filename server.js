@@ -1,6 +1,5 @@
 const express = require('express');
 const res = require('express/lib/response');
-const { readFile, read } = require('fs');
 const path = require('path');
 const api = require('./routes/index.js');
 const database = './db/db.json';
@@ -9,12 +8,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-
-
-app.use(express.json());
-
 // setting up the public folder as static
-app.use(express.static({extended: true}));
+app.use(express.static({public}));
+
+// middleware for parsing JSON and urlencoded data.
+app.use(express.json());
+app.use(express.urlencoded({extended : true}));
+
 
 // get route for the homepage 
 app.get ('/', (req, res) => {
@@ -28,3 +28,20 @@ app.get ('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => {
     readFile('/db/db.json').then((data) => res.json(JSON.parse(data)))
 });
+
+
+// POST   route for submitting a new note
+app.post ('/api/notes', (req, res) => {
+    console.log(req.body);
+    // Destructuring assigment for the items in req.body
+    const { title, text } = req.body;
+    // if all required properties are present
+    if (req.body) {
+        // Variable for the object we wil saved
+        const newNote = {
+            title,
+            text,
+            id: uuidv4(),
+        };
+    }
+})
