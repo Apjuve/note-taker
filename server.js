@@ -2,7 +2,7 @@ const express = require('express');
 const res = require('express/lib/response');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { readAndAppend, readFromFile, deleteNote} = require('./helpers/util.js');
+const { readAndAppend, readFile, deleteNote} = require('./public/assets/helpers/util.js');
 // const { readAndAppend, deleteNote } = require('./helpers/util.js');
 // const api = require('./routes/index.js');
 const database = './db/db.json';
@@ -28,8 +28,8 @@ app.get ('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
 
-app.get('./api/notes', (req, res) => {
-    readFile('/db/db.json').then((data) => res.json(JSON.parse(data)))
+app.get('/api/notes', (req, res) => {
+    readFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 });
 
 
