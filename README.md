@@ -32,7 +32,16 @@ This application allows the user to create and edit notes. It was built with Jav
 
 This application uses Node.js, Express, and Heroku to connect the front-end and back end functionality. Express creates and maintains the database where all new notes are saved, updated, and deleted. The application is hosted through Heroku. The user clicks the "Get Started" button on the landing page, is taken to the note taking page, and can start creating notes by adding a title and body text to their note. Once a new note has a title and a body, a save icon appears and the note can be added to the notes list on the left hand side of the page. Users can delete notes that they no longer need by clicking on the trash can icon.
 
+<img width="1440" alt="Screen Shot 2022-04-20 at 11 17 35 PM" src="https://user-images.githubusercontent.com/95586383/164365117-887e86e2-5014-4cc7-8f6f-ba91220ceca8.png">
+
+
+<img width="1440" alt="Screen Shot 2022-04-20 at 11 17 49 PM" src="https://user-images.githubusercontent.com/95586383/164365168-182d9224-4e9e-41ca-86f4-9954fc8b2423.png">
+
+
 ## Demo
+
+![Note-Taker](https://user-images.githubusercontent.com/95586383/164364724-5cf66c3d-5ed2-4824-b6d2-e64addffe9b1.mp4)
+
 
 
 ## Example Note Taker
@@ -63,3 +72,6 @@ This application uses Node.js, Express, and Heroku to connect the front-end and 
 * If you have any questions, please reach out via email: abiponce.ap@gmail.com
 
 ## License
+[MIT](https://opensource.org/licenses/MIT)
+
+![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=success)
