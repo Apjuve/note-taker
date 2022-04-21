@@ -40,7 +40,8 @@ This application uses Node.js, Express, and Heroku to connect the front-end and 
 
 ## Demo
 
-![Note-Taker](https://user-images.githubusercontent.com/95586383/164364724-5cf66c3d-5ed2-4824-b6d2-e64addffe9b1.mp4)
+![Note Taker](https://user-images.githubusercontent.com/95586383/164365856-3e82336a-2a18-4cd2-be7e-2fe6bf452897.gif)
+
 
 
 
